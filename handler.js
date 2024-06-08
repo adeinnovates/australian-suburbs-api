@@ -59,36 +59,7 @@ const fetchJSONFromS3 = async () => {
     throw error; // Re-throw to allow Lambda to handle the error
   }
 };
-/*
-const groupDataByState = (data) => {
-  console.log('groupDataByState input:', data); // Log input
-  const states = {};
 
-  // Make sure 'data' is an array before iterating
-  if (Array.isArray(data)) {
-    data.forEach((row) => {
-      const state = row['State'];
-      const lga = row['Local Government Area'];
-      const suburb = row['Suburb'];
-
-      if (!states[state]) {
-        states[state] = {};
-      }
-
-      if (!states[state][lga]) {
-        states[state][lga] = [];
-      }
-
-      states[state][lga].push(suburb);
-    });
-  } else {
-    console.error('Data is not an array:', data);
-    // Handle the error appropriately (e.g., throw an error or return an empty object)
-  }
-  console.log('groupDataByState output:', states); // Log output
-  return states;
-};
-*/
 const groupDataByState = (data) => {
   console.log('groupDataByState input:', data);
   const states = {};

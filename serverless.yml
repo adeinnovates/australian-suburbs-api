@@ -6,8 +6,8 @@ provider:
   name: aws
   runtime: nodejs18.x
   environment:
-    S3_BUCKET: hypn-imgs
-    S3_KEY: australian_suburbs.json
+    S3_BUCKET: [bucket]
+    S3_KEY: [file]
   iamRoleStatements:
     - Effect: "Allow"
       Action:
