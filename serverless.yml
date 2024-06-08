@@ -1,0 +1,39 @@
+service: location-api
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  environment:
+    S3_BUCKET: hypn-imgs
+    S3_KEY: australian_suburbs.json
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+        - "s3:GetObject"
+        - "s3:PutObjectAcl"
+      Resource: "arn:aws:s3:::hypn-imgs/*"
+
+# you can overwrite defaults here
+  stage: dev
+  region: eu-west-1
+
+functions:
+  getLocation:
+    handler: handler.getLocation
+    memorySize: 512 
+    timeout: 30  # Increase this value as needed
+    events:
+      - http:
+          path: /location
+          method: get
+          request:
+            parameters:
+              querystrings:
+                state: true
+
+
+plugins:
+  - serverless-offline
