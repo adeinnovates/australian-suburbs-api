@@ -1,13 +1,16 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: mulaa
+
 service: location-api
 
-frameworkVersion: "3"
+##frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
   environment:
-    S3_BUCKET: [bucket]
-    S3_KEY: [file]
+    S3_BUCKET: hypn-imgs
+    S3_KEY: australian_suburbs.json
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -29,6 +32,8 @@ functions:
       - http:
           path: /location
           method: get
+          cors: 
+            origin: '*'
           request:
             parameters:
               querystrings:

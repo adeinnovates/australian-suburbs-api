@@ -88,6 +88,11 @@ const groupDataByState = (data) => {
 module.exports.getLocation = async (event) => {
   const state = event.queryStringParameters ? event.queryStringParameters.state : null;
 
+  const headers = {
+    'Access-Control-Allow-Origin': '*', // Replace '*' with your frontend app's URL for better security
+    'Access-Control-Allow-Credentials': true,
+  };
+
   try {
     console.log('Starting function execution'); 
     console.log('S3_BUCKET:', S3_BUCKET); // Log environment variables
